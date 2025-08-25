@@ -43,7 +43,7 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
     # --- Kanal kontrolü ---
     try:
-        member = await context.bot.get_chat_member(chat_id=CHANNEL, user_id=user.id)
+        member = await context.bot.get_chat_member(chat_id=-1002496669943, user_id=7479547609)
         if member.status in ["left", "kicked"]:  # Katılmamış
             await update.message.reply_text(
                 f"📌 Önce kanala katılmalısın:\n➡️ https://t.me/elijahchnel\n\nSonra tekrar /start yaz."

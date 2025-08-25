@@ -14,8 +14,8 @@ cursor.execute("""CREATE TABLE IF NOT EXISTS users (
 conn.commit()
 
 # --- Ayarlar ---
-CHANNEL = "@elijahchanel"
-BOT_USERNAME = "Elijahfakenobot"   # başına @ koyma
+CHANNELS = ["@elijahchanel", "@elijahbio"]   # Katılması zorunlu kanallar
+BOT_USERNAME = "Elijahfakenobot"             # başına @ koyma
 BOT_TOKEN = os.getenv("BOT_TOKEN", "BURAYA_TOKENİNİ_YAZ")  # Render'da env var'dan alabilirsin
 
 # --- Ana Menü Fonksiyonu ---
@@ -43,18 +43,26 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
     # --- Kanal kontrolü ---
     try:
-        member = await context.bot.get_chat_member(chat_id=-1002496669943, user_id=7479547609)
-        if member.status in ["left", "kicked"]:  # Katılmamış
+        not_joined = []
+        for ch in CHANNELS:
+            member = await context.bot.get_chat_member(chat_id=ch, user_id=user.id)
+            if member.status in ["left", "kicked"]:
+                not_joined.append(ch)
+
+        if not_joined:
+            channels_list = "\n".join([f"➡️ {ch}" for ch in not_joined])
             await update.message.reply_text(
-                f"📌 Önce kanala katılmalısın:\n➡️ https://t.me/elijahchnel\n\nSonra tekrar /start yaz."
+                f"📌 Önce aşağıdaki kanallara katılmalısın:\n{channels_list}\n\nSonra tekrar /start yaz."
             )
             return
     except Exception:
-        await update.message.reply_text("⚠️ Botu @elijahchanel kanalına admin yapmalısın.")
+        await update.message.reply_text(
+            "⚠️ Botu belirtilen kanallara admin yapmalısın veya kullanıcı adlarını doğru girdiğinden emin ol."
+        )
         return
 
     # Menü aç
-    await update.message.reply_text("✅ Kanala katıldın!\n📍 Menüden seçim yap:", reply_markup=main_menu())
+    await update.message.reply_text("✅ Kanallara katıldın!\n📍 Menüden seçim yap:", reply_markup=main_menu())
 
 # --- Buton Kontrolleri ---
 async def button(update: Update, context: ContextTypes.DEFAULT_TYPE):

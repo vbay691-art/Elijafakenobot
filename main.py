@@ -46,11 +46,11 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
         member = await context.bot.get_chat_member(chat_id=CHANNEL, user_id=user.id)
         if member.status in ["left", "kicked"]:  # Katılmamış
             await update.message.reply_text(
-                f"📌 Önce kanala katılmalısın:\n➡️ https://t.me/elionchannel\n\nSonra tekrar /start yaz."
+                f"📌 Önce kanala katılmalısın:\n➡️ https://t.me/elijahchnel\n\nSonra tekrar /start yaz."
             )
             return
     except Exception:
-        await update.message.reply_text("⚠️ Botu @elionchannel kanalına admin yapmalısın.")
+        await update.message.reply_text("⚠️ Botu @elijahchanel kanalına admin yapmalısın.")
         return
 
     # Menü aç

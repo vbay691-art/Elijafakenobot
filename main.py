@@ -92,7 +92,7 @@ async def button(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
     elif query.data == "kurucu":
         keyboard = [[InlineKeyboardButton("⬅️ Geri", callback_data="back")]]
-        await query.edit_message_text("👤 Kurucu: @drnpy", reply_markup=InlineKeyboardMarkup(keyboard))
+        await query.edit_message_text("👤 Kurucu: @elijahbio", reply_markup=InlineKeyboardMarkup(keyboard))
 
     elif query.data == "back":
         await query.edit_message_text("📍 Menüden seçim yap:", reply_markup=main_menu())

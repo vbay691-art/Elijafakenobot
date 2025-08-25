@@ -92,7 +92,7 @@ async def button(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
     elif query.data == "kurucu":
         keyboard = [[InlineKeyboardButton("⬅️ Geri", callback_data="back")]]
-        await query.edit_message_text("👤 Kurucu: @elijahbio", reply_markup=InlineKeyboardMarkup(keyboard))
+        await query.edit_message_text("👤 Kurucu: @barkintap", reply_markup=InlineKeyboardMarkup(keyboard))
 
     elif query.data == "back":
         await query.edit_message_text("📍 Menüden seçim yap:", reply_markup=main_menu())
@@ -126,7 +126,7 @@ async def claim(update: Update, context: ContextTypes.DEFAULT_TYPE):
         if refs >= cost:
             # Yeterli referans → Kurucu mesajı
             await query.edit_message_text(
-                f"✅ Referansın yeterli!\nKurucu: @elijahbio",
+                f"✅ Referansın yeterli!\nKurucu: @barkintap",
                 reply_markup=InlineKeyboardMarkup(keyboard)
             )
         else:

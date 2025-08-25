@@ -126,7 +126,7 @@ async def claim(update: Update, context: ContextTypes.DEFAULT_TYPE):
         if refs >= cost:
             # Yeterli referans → Kurucu mesajı
             await query.edit_message_text(
-                f"✅ Referansın yeterli!\nKurucu: @drnpy",
+                f"✅ Referansın yeterli!\nKurucu: @elijahbio",
                 reply_markup=InlineKeyboardMarkup(keyboard)
             )
         else:
